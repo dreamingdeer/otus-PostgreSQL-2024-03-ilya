@@ -1,0 +1,31 @@
+name: pghw1
+version: '3.9'
+services:
+  db:
+    container_name: pgdb
+    image: postgres:16.1
+    restart: always
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASS}
+      POSTGRES_DB: ${PG_DB}
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./logs:/var/log/postgresql
+    networks:
+      - frontend
+
+  pgweb:
+    image: sosedoff/pgweb:0.15.0
+    restart: always
+    ports:
+      - 7070:8081
+    networks:
+      - frontend
+    environment:
+      - DATABASE_URL=postgres://${PG_USER}:${PG_PASS}@db:5432/${PG_DB}?sslmode=disable
+  
+
+networks:
+  frontend:
+    name: frontend
