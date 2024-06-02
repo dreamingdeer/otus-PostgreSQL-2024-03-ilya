@@ -9,7 +9,7 @@ The phenomena which are prohibited at various levels are:
 
 
 
-Конфигурация для запуска postgres: [docker-compose.yaml](/docker-compose.yaml "docker compose")
+Конфигурация для запуска postgres: [docker-compose.yaml](./docker-compose.yaml "docker compose")
 
 ## Запуск в контейнере
 ```
@@ -24,7 +24,7 @@ podman run --rm -it --network frontend --env-file .env postgres:16.1 bash -c 'ex
 
 ## run postgres on ubuntu by qemu
 
-Скрипт: [qemu_ubuntu.sh](/qemu_ubuntu.sh "qemu run scritp" )
+Скрипт: [qemu_ubuntu.sh](./qemu_ubuntu.sh "qemu run scritp" )
 
 ### Свежая ubuntu
 ```
@@ -553,7 +553,7 @@ COMMIT
 ```
 Обе тразакции успешны
 
-# ДЗ 02
+# Домашнее задание 01
 
 
   в первой сессии новую таблицу и наполнить ее данными create table persons(id serial, first_name text, second_name text); insert into persons(first_name, second_name) values('ivan', 'ivanov'); insert into persons(first_name, second_name) values('petr', 'petrov'); commit;
@@ -595,7 +595,7 @@ select * from persons;
 ```    
   видите ли вы новую запись и если да то почему?
 ```
-не видим потмоу что автокоммит отключен. и уровень изоляции по умолчанию read commited.
+Не видим потмоу что автокоммит отключен. и уровень изоляции по умолчанию read commited.
 ```
   завершить первую транзакцию - commit;
 ```sql
@@ -644,7 +644,7 @@ postgres=*# select* from persons;
 ```
   видите ли вы новую запись и если да то почему?
 ```
-Нет так как данные еше не добавлены первойы транзакцией. она еще не завершена. 
+Нет так как данные еше не добавлены первой транзакцией. И она еще не завершена. 
 ```
   завершить первую транзакцию - commit;
 ```sql
@@ -663,7 +663,7 @@ postgres=*# select * from persons;
 ```    
   видите ли вы новую запись и если да то почему?
 ```
-нет не видим так как теперь у нас не завершенная транзакция во втором экране с уровнем изоляции repeatable read. данные от первой появились но для нас они не видны.
+Нет не видим, так как теперь у нас не завершенная транзакция в первой сессии - с уровнем изоляции repeatable read. Данные от первой появились, но для транзакции во второй сессии они не видны.
 ```
   завершить вторую транзакцию
 ```
@@ -683,6 +683,6 @@ postgres=# select * from persons ;
 ```    
   видите ли вы новую запись и если да то почему? ДЗ сдаем в виде миниотчета в markdown в гите
 ```
-Так как начась новая транзакция на данном горизонте событий мы видим все предыдущие;
+Так как начась новая транзакция во второй сессии на данном горизонте событий мы видим все предыдущие завершенные транзакции.
 ```
 ------
