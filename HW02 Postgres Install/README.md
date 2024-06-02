@@ -635,7 +635,7 @@ Server: Docker Engine - Community
   GitCommit:        de40ad0
 ```
 
-Создадим файл с кредами для postgres контейнера
+Создадим файл с кредами для postgres контейнера, сам  [docker-compose.yaml](./docker-compose.yaml "композитный композ" )
 ```sh
 sudo chown -R dreamingdeer:dreamingdeer /opt/pg
 cd /opt/pg/
@@ -645,10 +645,9 @@ PG_PASS=оченьбезопаснонебезопасно
 PG_DB=otus-pg
 EOF
 ```
-Запустим контейнер
+Запустим контейнер c postgres
 ```sh
 docker compose up -d
-WARN[0000] /opt/pg/docker-compose.yaml: `version` is obsolete 
 [+] Running 15/15
  ✔ db Pulled                                                                                                                                                8.5s 
    ✔ c57ee5000d61 Pull complete                                                                                                                             2.0s 
