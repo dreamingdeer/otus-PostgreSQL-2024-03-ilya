@@ -995,7 +995,7 @@ debconf: falling back to frontend: Readline
 Building PostgreSQL dictionaries from installed myspell/hunspell packages...
 Removing obsolete dictionary files:
 
-> stype pg_upgrade
+> type pg_upgrade
 pg_upgrade is /usr/lib/postgresql/15/bin/pg_upgrade
 > /usr/lib/postgresql/15/bin/initdb -U cooluser --locale=en_US.utf8 --encoding=UTF-8 -D /var/lib/postgresql/data15
 The files belonging to this database system will be owned by user "postgres".
@@ -1079,7 +1079,8 @@ Once you start the new server, consider running:
 
 Running this script will delete the old cluster's data files:
     ./delete_old_cluster.sh
-
+```
+```sh
 > cd /var/lib/postgresql/
 > rm -rf ../data/*
 > cp -rf * ../data/
@@ -1100,7 +1101,8 @@ vacuumdb: processing database "template1": Generating medium optimizer statistic
 vacuumdb: processing database "otus-pg": Generating default (full) optimizer statistics
 vacuumdb: processing database "postgres": Generating default (full) optimizer statistics
 vacuumdb: processing database "template1": Generating default (full) optimizer statistics
-
+```
+```sh
 > psql -h 127.0.0.1 -p 5000 -U cooluser otus-pg
 Password for user cooluser: 
 psql (14.12 (Ubuntu 14.12-1.pgdg22.04+1), server 15.7 (Debian 15.7-1.pgdg120+1))
@@ -1115,7 +1117,7 @@ otus-pg=# select * from persons;
   1 | ivan       | ivanov
   2 | petr       | petrov
 (2 rows)
-
+```
 Алилуя теперь у нас 15 postgres. Мы немного попортили тонкий слой контейнера. Вернем все обратно и проверим что все работает
 ```sh
 > docker compose down 
