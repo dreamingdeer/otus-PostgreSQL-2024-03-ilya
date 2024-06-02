@@ -1,0 +1,14 @@
+#cloud-config
+version: v1
+packages_update: false
+packages_upgrade: false
+
+users:
+  - name: dreamingdeer
+    gecos: AnsibleAutomation
+    groups: sudo
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    lock_passwd: true
+    ssh_authorized_keys:
+      - xxx
