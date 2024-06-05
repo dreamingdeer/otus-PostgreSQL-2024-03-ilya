@@ -29,7 +29,7 @@ resource "yandex_compute_instance" "vm_ubuntu_lts" {
   }
   metadata = {
     #cloud init params for vm
-    user-data = file(var.user_data_file)
+    user-data = var.user_data_file
   }
   scheduling_policy {
     preemptible = true

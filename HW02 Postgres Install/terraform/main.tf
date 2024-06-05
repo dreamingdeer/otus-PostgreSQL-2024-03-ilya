@@ -11,7 +11,7 @@ module "bastion" {
   vm_count = 1
   vm_nat = true
   core_fraction = 20
-  user_data_file = "bastion-meta.yml"
+  user_data_file = file("bastion-meta.yml")
   disk_size = 15
   # base name
   name = "bastion-for-pg"
@@ -31,7 +31,7 @@ module "pg01" {
   memory = 4
   disk_size = 30
   # set custom
-  user_data_file = "pg-meta.yml"
+  user_data_file = file("pg-meta.yml")
   # base name
   name = "pg"
   # get subnet id for vm from specified zone
