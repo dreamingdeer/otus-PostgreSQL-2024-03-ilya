@@ -1,0 +1,7 @@
+*.img
+*.env
+*.tfvars
+*.tfstate*
+*.terraform*
+*.vscode
+*accesskey*
