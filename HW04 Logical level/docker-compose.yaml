@@ -1,0 +1,31 @@
+name: pghw1
+services:
+  db:
+    container_name: pgdb
+    image: mirror.gcr.io/postgres:14
+    restart: always
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASS}
+      POSTGRES_DB: ${PG_DB}
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./logs:/var/log/postgresql
+    networks:
+      - pg
+    ports:
+      - 5000:5432
+
+  pgweb:
+    image: sosedoff/pgweb
+    restart: always
+    ports:
+      - 7070:8081
+    networks:
+      - pg
+    environment:
+      - DATABASE_URL=postgres://${PG_USER}:${PG_PASS}@db:5432/${PG_DB}?sslmode=disable
+
+networks:
+  pg:
+    name: pg
