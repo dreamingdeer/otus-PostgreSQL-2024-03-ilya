@@ -54,3 +54,12 @@ variable "source_family" {
   type = string
   default = "ubuntu-2004-lts"
 }
+
+variable "vm_second_disks" {
+  type = map(object({
+    name = string,
+    type = string,
+    size = number
+  }))
+  default = {}
+}

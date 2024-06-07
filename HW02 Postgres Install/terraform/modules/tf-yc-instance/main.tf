@@ -23,6 +23,15 @@ resource "yandex_compute_instance" "vm_ubuntu_lts" {
       size     = var.disk_size
     }
   }
+
+ dynamic "secondary_disk" {
+    for_each = yandex_compute_disk.disk
+    content {
+      disk_id = secondary_disk.value.id
+      auto_delete = false
+    }
+  }
+
   network_interface {
     subnet_id = var.subnet_id
     nat       = var.vm_nat
@@ -35,4 +44,16 @@ resource "yandex_compute_instance" "vm_ubuntu_lts" {
     preemptible = true
   }
   zone = var.instance_zone
+}
+
+resource "yandex_compute_disk" "disk" {
+  for_each = var.vm_second_disks
+  name     = each.value.name
+  type     = each.value.type
+  zone     = var.instance_zone
+  size     = each.value.size
+
+  labels = {
+    environment = each.key
+  }
 }

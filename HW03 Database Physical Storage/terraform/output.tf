@@ -1,5 +1,5 @@
 output "base_image_id" {
-  value = module.pg01.mv_source_image_id
+  value = module.pg01.vm_source_image_id
 }
 
 output "external_ips_bastion" {
