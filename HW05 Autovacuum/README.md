@@ -15,7 +15,7 @@ module "pg01" {
   vm_count = 1 # numbers of vm
   vm_nat = false
   cores = 2
-  core_fraction = 20
+  core_fraction = 100
   memory = 4
   disk_size = 15
   vm_second_disks = {
