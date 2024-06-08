@@ -7,7 +7,7 @@
 
 ```ruby
 Установим как обычно через терраформ.
-Добавивь ssd диски
+Добавим SSD диск.
 
 module "pg01" {
   source = "github.com/dreamingdeer/otus-PostgreSQL-2024-03-ilya.git//HW02 Postgres Install/terraform/modules/tf-yc-instance?ref=356bbb2"
