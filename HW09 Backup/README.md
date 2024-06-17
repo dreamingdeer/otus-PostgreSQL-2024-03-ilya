@@ -139,6 +139,7 @@ CREATE DATABASE
 
 pg_restore -l /backup/bkp.gz  > list.xxx
 
+Используем следующий контент для востановления только второй таблицы и схемы
 
 5; 2615 16385 SCHEMA - xyz admin
 213; 1259 16397 TABLE xyz bb2 admin
