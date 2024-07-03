@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.1.3" use-changelog="false" max-obj-count="4"
+	 last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="pg_hw11" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" name-color="#000000" sql-disabled="true">
+</schema>
+
+<table name="vm" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="300" y="300"/>
+	<column name="vm_id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="255"/>
+		<comment> <![CDATA[VM name]]> </comment>
+	</column>
+	<column name="ip">
+		<type name="inet" length="0"/>
+	</column>
+	<column name="created_at">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="vm_pk" type="pk-constr" table="public.vm">
+		<columns names="vm_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="user" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="660" y="280"/>
+	<column name="user_id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="login">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="surname">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="lastname">
+		<type name="varchar" length="255"/>
+	</column>
+	<constraint name="user_pk" type="pk-constr" table="public.&quot;user&quot;">
+		<columns names="user_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="session" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="460" y="700"/>
+	<column name="session_id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="start_at">
+		<type name="date" length="0"/>
+	</column>
+	<column name="end_at">
+		<type name="date" length="0"/>
+	</column>
+	<constraint name="session_pk" type="pk-constr" table="public.session">
+		<columns names="session_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="vm_has_many_session" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#89bb96"
+	 src-table="public.vm"
+	 dst-table="public.session"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="user_has_many_session" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#3d5406"
+	 src-table="public.&quot;user&quot;"
+	 dst-table="public.session"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
