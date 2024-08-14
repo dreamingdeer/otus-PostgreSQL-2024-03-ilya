@@ -246,3 +246,23 @@ vitrina=# select v.*
  Спички хозайственные |   195.00
 (1 row)
 ```
+Как видим в данном случае когда наша цена на спички поменялась у нас правильные данные в витрине.
+
+```sql
+vitrina=# truncate table good_sum_mart;
+TRUNCATE TABLE
+vitrina=# insert into good_sum_mart SELECT G.good_name, sum(G.good_price * S.sales_qty)
+FROM goods G
+INNER JOIN sales S ON S.good_id = G.goods_id
+GROUP BY G.good_name;
+INSERT 0 2
+vitrina=# select v.*
+  from goods g
+  join good_sum_mart v on g.good_name = v.good_name
+ where g.goods_id = 1;
+      good_name       | sum_sale
+----------------------+----------
+ Спички хозайственные |   290.00
+(1 row)
+```
+А вот так теперь имеем не правильные данные
