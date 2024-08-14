@@ -902,6 +902,8 @@ WHERE
     n_live_tup > 0 and  n_dead_tup > 0
 ORDER BY
     dead_ratio DESC;
+LIMIT 5;
+
  table | live_rows | dead_rows | dead_ratio
 -------+-----------+-----------+------------
 (0 rows)
