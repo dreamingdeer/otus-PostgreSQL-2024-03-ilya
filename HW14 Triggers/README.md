@@ -109,7 +109,7 @@ begin
 RAISE NOTICE 'Good name: %', v_gn;
 RAISE NOTICE 'New total sale %', v_nsm;
 
-MERGE INTO "good_sum_mart" AS v
+MERGE INTO good_sum_mart AS v
 USING (SELECT v_gn as gn, v_nsm as nsm ) AS t ON v.good_name = t.gn
 WHEN NOT MATCHED THEN 
    INSERT (good_name, sum_sale)
